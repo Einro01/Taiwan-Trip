@@ -1,0 +1,539 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Taiwan Trip 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one phone-width column. Sticky day tabs, a timeline per day, MRT line colors as transport chips. */
+:root {
+  --bg: #f2f4f6;
+  --surface: #ffffff;
+  --ink: #131c26;
+  --muted: #566271;
+  --line: #dce2e8;
+  --accent: #0a5fa8;
+  --accent-soft: #e4eef8;
+  --flag-bg: #fcefcc;
+  --flag-fg: #6b4800;
+  --mrt-blue: #0070bd;
+  --mrt-red: #e3002c;
+  --mrt-green: #008659;
+  --mrt-airport: #8246af;
+  --rail: #1f3a68;
+  --pingxi: #a8620f;
+  --bus: #4b5563;
+  --ferry: #0e7480;
+  --flight: #334155;
+  --chip-fg: #ffffff;
+  --f-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --f-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1319; --surface: #161f29; --ink: #e6ecf1; --muted: #9ba8b6; --line: #263240;
+    --accent: #62acef; --accent-soft: #15304a; --flag-bg: #3a2e0f; --flag-fg: #f1cb6b;
+    --rail: #2c5191; --bus: #5b6676; --flight: #4a5a70;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1319; --surface: #161f29; --ink: #e6ecf1; --muted: #9ba8b6; --line: #263240;
+  --accent: #62acef; --accent-soft: #15304a; --flag-bg: #3a2e0f; --flag-fg: #f1cb6b;
+  --rail: #2c5191; --bus: #5b6676; --flight: #4a5a70;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg);
+}
+.wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Hero */
+.hero .wrap { padding-block: 28px 18px; display: flex; flex-direction: column; gap: 8px; }
+.kicker {
+  font-family: var(--f-mono); font-size: 12px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+}
+h1 {
+  font-family: var(--f-display); font-weight: 800; font-size: 60px;
+  line-height: .92; letter-spacing: -.03em; margin: 0;
+}
+.hero .dates { font-size: 19px; font-weight: 700; margin: 4px 0 0; }
+.hero .base { color: var(--muted); margin: 0; font-size: 15px; }
+.count {
+  align-self: flex-start; margin-top: 6px;
+  font-family: var(--f-mono); font-size: 13px; font-weight: 600;
+  background: var(--accent-soft); color: var(--accent);
+  padding: 6px 10px; border-radius: 6px;
+}
+
+/* Tabs */
+.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.tabs .wrap {
+  display: flex; gap: 6px; overflow-x: auto; padding-block: 10px;
+  scrollbar-width: none;
+}
+.tabs .wrap::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 7px 13px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface);
+  font-weight: 700; font-size: 15px; line-height: 1.15;
+}
+.tab small { font-family: var(--f-mono); font-size: 11px; font-weight: 400; color: var(--muted); }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tab[aria-selected="true"] small { color: var(--bg); opacity: .75; }
+
+/* Panels */
+.panel .wrap { padding-block: 22px 56px; display: flex; flex-direction: column; gap: 28px; }
+h2 {
+  font-family: var(--f-display); font-weight: 800; font-size: 34px;
+  line-height: 1.02; letter-spacing: -.02em; margin: 0; text-wrap: balance;
+}
+.sec { display: flex; flex-direction: column; gap: 12px; }
+.sec > h3 {
+  margin: 0; font-family: var(--f-mono); font-size: 12px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.dayhead { display: flex; flex-direction: column; gap: 6px; }
+.dayhead .when { font-family: var(--f-mono); font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+.dayhead .route { color: var(--muted); font-size: 15px; margin: 0; }
+.checkbox {
+  background: var(--accent-soft); border-radius: 12px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.checkbox b { font-size: 13px; font-family: var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.checkbox p { margin: 0; font-size: 15.5px; }
+
+/* Timeline */
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl::before {
+  content: ""; position: absolute; left: 65px; top: 14px; bottom: 14px;
+  width: 2px; background: var(--line);
+}
+.step { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 20px; padding-block: 11px; position: relative; }
+.step::before {
+  content: ""; position: absolute; left: 61px; top: 17px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 3px var(--bg);
+}
+.step.move::before { left: 62px; top: 18px; width: 8px; height: 8px; background: var(--bg); border: 2px solid var(--muted); box-shadow: none; }
+.t {
+  font-family: var(--f-mono); font-size: 14px; font-weight: 600; line-height: 1.3;
+  font-variant-numeric: tabular-nums; padding-top: 1px;
+}
+.t .end { display: block; color: var(--muted); font-weight: 400; font-size: 12.5px; }
+.c { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.c h4 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; text-wrap: balance; }
+.step.move h4 { font-size: 15.5px; color: var(--muted); }
+.step.move .t { color: var(--muted); font-weight: 400; }
+.meta { margin: 0; font-size: 14px; color: var(--muted); }
+.note { margin: 2px 0 0; font-size: 15px; line-height: 1.45; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.chip {
+  font-size: 12px; font-weight: 700; line-height: 1; color: var(--chip-fg);
+  padding: 5px 8px; border-radius: 4px; white-space: nowrap;
+}
+.chip.BL { background: var(--mrt-blue); } .chip.R { background: var(--mrt-red); }
+.chip.G { background: var(--mrt-green); } .chip.A { background: var(--mrt-airport); }
+.chip.TRA { background: var(--rail); } .chip.PX { background: var(--pingxi); }
+.chip.BUS { background: var(--bus); } .chip.FERRY { background: var(--ferry); }
+.chip.FLY { background: var(--flight); }
+.flag {
+  align-self: flex-start; margin-top: 4px;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  background: var(--flag-bg); color: var(--flag-fg); padding: 3px 7px; border-radius: 4px;
+}
+
+/* Overview */
+.glance { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.glance button {
+  width: 100%; display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 12px; align-items: center;
+  padding: 12px 2px; background: none; border: 0; border-bottom: 1px solid var(--line);
+  text-align: left; cursor: pointer;
+}
+.glance .d { font-family: var(--f-mono); font-size: 13px; font-weight: 600; line-height: 1.3; }
+.glance .d span { display: block; color: var(--muted); font-weight: 400; }
+.glance .th { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.glance .go { color: var(--accent); font-family: var(--f-mono); font-size: 18px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0;
+}
+.card.wide { grid-column: span 2; }
+.card .lbl { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.card .big { font-size: 20px; font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.card p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.copy {
+  align-self: flex-start; margin-top: 6px; cursor: pointer;
+  font-size: 14px; font-weight: 700; padding: 7px 12px; border-radius: 8px;
+  background: var(--accent-soft); color: var(--accent); border: 0;
+}
+.todo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.todo label {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer;
+}
+.todo input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); }
+.todo .when { display: block; font-family: var(--f-mono); font-size: 12px; font-weight: 600; color: var(--accent); }
+.todo .what { display: block; font-weight: 700; line-height: 1.3; }
+.todo .why { display: block; font-size: 14px; color: var(--muted); }
+.todo input:checked ~ span .what { text-decoration: line-through; color: var(--muted); }
+.facts { margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.facts dt { font-weight: 700; font-size: 14.5px; }
+.facts dd { margin: 0; font-size: 14.5px; color: var(--muted); }
+.open { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.open li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.open b { line-height: 1.3; }
+.open span { font-size: 14.5px; color: var(--muted); }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+summary { cursor: pointer; font-weight: 700; }
+details ul { margin: 10px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+details a { color: var(--accent); word-break: break-word; }
+.foot { font-size: 13px; color: var(--muted); margin: 0; }
+@media (max-width: 360px) { .cards { grid-template-columns: 1fr; } .card.wide { grid-column: auto; } h1 { font-size: 52px; } }
+@media (prefers-reduced-motion: no-preference) { .panel:not([hidden]) .wrap { animation: rise .2s ease-out; } }
+@keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Trip plan · Taipei base</span>
+    <h1>Taiwan</h1>
+    <p class="dates">Wed 25 to Sun 29 Nov 2026</p>
+    <p class="base">Wonderwall Ximending, Taipei. Times are plan targets.</p>
+    <span class="count" id="count">5 days, 4 nights</span>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Trip days">
+  <div class="wrap" role="tablist" id="tabs"></div>
+</nav>
+
+<main id="panels"></main>
+
+<script>
+var DAYS = [
+  { id: "day1", n: 1, dow: "Wed", date: "25 Nov", iso: "2026-11-25",
+    theme: "Arrival, Ximending base, Songshan",
+    route: "Airport MRT Express, Blue Line, Green Line",
+    check: "Taiwan Arrival Card (submit 22 to 25 Nov). Hotel check-in is from 15:00.",
+    steps: [
+      { t: "05:00", title: "Leave for Don Mueang Airport", where: "Don Mueang (DMK)", note: "Be at the airport 2 to 3 h before the 07:45 departure.", move: true },
+      { t: "07:45", title: "Flight DMK to TPE", meta: "About 4 h", lines: [["FLY", "Flight"]], note: "Taiwan clocks are 1 h ahead of Thailand. Submit the Taiwan Arrival Card first." },
+      { t: "12:30", title: "Land at Taoyuan Airport (TPE)", where: "Terminal per your booking", note: "Landing time is local Taiwan time." },
+      { t: "12:30", e: "13:45", title: "Immigration, bags, EasyCard, SIM or eSIM", where: "TPE", dur: "About 75 min (est)", note: "Get an EasyCard for MRT, buses and the Tamsui ferry." },
+      { t: "13:45", title: "Airport MRT Express to Taipei Main (A1)", dur: "35 to 39 min", lines: [["A", "Airport MRT Express"]], note: "NT$160. Trains about every 15 min. Express has luggage racks; Commuter takes about 50 min.", move: true },
+      { t: "14:30", title: "Transfer, 1 stop to Ximen", dur: "About 15 min incl. transfer (est)", lines: [["BL", "Blue Line"]], note: "Hotel is a short walk from Ximen.", move: true },
+      { t: "15:00", title: "Check in at Wonderwall Ximending", where: "9F-2, No.36, Xining S. Rd., Wanhua", note: "Check-in is from 15:00. Ask for early bag drop." },
+      { t: "16:00", title: "Travel to Songshan", dur: "About 20 min (est)", lines: [["G", "Green Line to the terminus"]], note: "Exit 2, 3 or 4, then about 1 min north to Raohe Street.", move: true },
+      { t: "16:30", e: "18:15", title: "Ciyou Temple and Raohe Street Night Market", where: "Songshan District", dur: "1 h 45 min", note: "The temple is at the east entrance of the market. Alternative: Songshan Cultural and Creative Park.", flag: "Stop assumed, confirm" },
+      { t: "18:30", title: "Return to Ximending", dur: "About 20 min (est)", lines: [["G", "Green Line"]], move: true },
+      { t: "19:00", title: "Dinner: Mian Xian Ting noodles", where: "Ximending", dur: "About 1 h", note: "Venue not verified. Send the address or map link, or confirm if you mean Ay-Chung Mian Xian.", flag: "Venue to confirm" },
+      { t: "20:15", title: "Free walk in Ximending, early night", where: "Ximending", note: "Day 2 starts early." }
+    ] },
+  { id: "day2", n: 2, dow: "Thu", date: "26 Nov", iso: "2026-11-26",
+    theme: "Wanhua heritage, Elephant Mountain, Ningxia",
+    route: "MRT Blue, Red and Green lines",
+    check: "Weather and daylight for the hike. Sunset is about 17:03.",
+    steps: [
+      { t: "08:00", title: "Breakfast near the hotel", where: "Ximending", dur: "45 min" },
+      { t: "08:45", title: "MRT to Longshan Temple, 1 stop", dur: "About 5 min (est)", lines: [["BL", "Blue Line"]], note: "Exit 1, about 3 min walk to the temple.", move: true },
+      { t: "09:00", e: "10:15", title: "Lung Shan Temple", where: "Wanhua", dur: "1 h 15 min", note: "Open daily 06:00 to 22:00. Enter by the Dragon gate (right), leave by the Tiger gate (left), step over thresholds. Early morning is quieter." },
+      { t: "10:30", e: "12:15", title: "Bopiliao Historic Block", where: "Short walk from the temple", dur: "1 h 45 min", note: "Free. Outdoor 09:00 to 21:00, indoor 09:00 to 18:00. Closed Mondays, so Thursday is fine." },
+      { t: "12:30", e: "13:30", title: "Lunch", where: "Wanhua or Ximending", dur: "1 h" },
+      { t: "13:30", e: "14:45", title: "Rest at the hotel", note: "Keeps energy for the sunset hike. Use it for shopping if you prefer." },
+      { t: "14:45", title: "Travel to Xiangshan", dur: "About 40 min (est)", lines: [["BL", "Blue Line"], ["R", "Red Line"]], note: "Change at Taipei Main.", move: true },
+      { t: "15:25", title: "Walk to the trailhead", dur: "About 10 min", note: "Xiangshan Exit 2, then south through Zhongqiang Park. Trail is well signed.", move: true },
+      { t: "15:35", e: "17:30", title: "Elephant Mountain hike and sunset", where: "Xinyi District", dur: "1 to 1.5 h round trip", note: "3 km out and back, 176 m climb, mostly stone stairs. Sunset about 17:03. Bring water and shoes with grip. Slippery when wet. Use a phone torch for the descent." },
+      { t: "17:40", title: "MRT to Zhongshan, direct", dur: "About 25 min (est)", lines: [["R", "Red Line"]], note: "Exit 5 for Ningxia, about 2 min walk.", move: true },
+      { t: "18:10", e: "20:30", title: "Ningxia Night Market", where: "Datong District", dur: "2 h 20 min", note: "Open about 17:00 to 01:00. Quieter 17:00 to 18:30 and after 22:00. Main lane is about 300 m. Many stalls have no seating." },
+      { t: "20:45", title: "Return to the hotel, 2 stops", dur: "About 10 min (est)", lines: [["G", "Green Line"]], move: true }
+    ] },
+  { id: "day3", n: 3, dow: "Fri", date: "27 Nov", iso: "2026-11-27",
+    theme: "Shifen and Keelung day trip",
+    route: "MRT, Taiwan Railway to Ruifang, Pingxi Line, bus 791",
+    check: "Train timetable on the Taiwan Railway app. Rain gear.",
+    steps: [
+      { t: "07:15", title: "Breakfast, leave the hotel", where: "Ximending", dur: "30 min" },
+      { t: "07:45", title: "MRT to Taipei Main, 1 stop", dur: "About 5 min (est)", lines: [["BL", "Blue Line"]], move: true },
+      { t: "08:15", title: "Train to Ruifang", dur: "About 45 min", lines: [["TRA", "Taiwan Railway"]], note: "Pick the nearest departure on the TRA app. About NT$69 one way Taipei to Shifen (2024 figure).", move: true },
+      { t: "09:00", title: "Buy the Pingxi Line Day Pass", where: "Ruifang Station", dur: "15 min", note: "NT$80. Covers all Pingxi Line stations and the Shenao Line." },
+      { t: "09:30", title: "Pingxi Line train to Shifen", dur: "About 25 min", lines: [["PX", "Pingxi Line"]], note: "Check the timetable at Ruifang. Waits can be long (est up to about 1 h).", move: true },
+      { t: "10:00", title: "Walk to Shifen Waterfall", dur: "About 30 min, 2 km", note: "Bus 795 from the Old Street stop (Shifenliao) is NT$15 but hourly.", move: true },
+      { t: "10:30", e: "12:00", title: "Shifen Waterfall", where: "Pingxi, New Taipei", dur: "1 h 30 min", note: "Free. Open 09:00 to 16:30. Deck 4 for the aerial view, deck 3 at the base. Wear grip shoes, bring a lens cloth. No drones, swimming or lanterns." },
+      { t: "12:00", title: "Walk back to Shifen Old Street", dur: "About 30 min", move: true },
+      { t: "12:30", e: "14:00", title: "Lunch and Shifen Old Street", where: "Shifen", dur: "1 h 30 min", note: "Release sky lanterns here, not at the waterfall." },
+      { t: "14:15", title: "Shifen to Keelung via Badu", dur: "About 90 min, NT$48", lines: [["PX", "Pingxi Line"], ["TRA", "Taiwan Railway"]], note: "Check the exact connection on the TRA app.", move: true },
+      { t: "15:50", title: "Bus 791 to Zhengbin Fishing Harbor", lines: [["BUS", "Bus 791"]], note: "Stop near Chenghuang Temple, 3 min from Keelung Station. Get off at Zhongzheng Rd / Zhengbin Rd. Or bus 101 / 103 to Heping Bridge.", move: true },
+      { t: "16:15", e: "17:45", title: "Zhengbin Fishing Harbor", where: "Keelung", dur: "1 h 30 min", note: "Free, open 24 h. About 15 rainbow houses. The sun is behind the houses late afternoon. Houses light up at night. Residential area, be respectful." },
+      { t: "17:45", title: "Dinner in Keelung", dur: "1 h 15 min", flag: "Venue to choose" },
+      { t: "19:15", title: "Train back to Taipei", dur: "Under 1 h", lines: [["TRA", "Taiwan Railway"]], move: true },
+      { t: "20:30", title: "Bar", where: "For example Ximending", flag: "Venue to choose" },
+      { t: "22:30", title: "Back at the hotel", move: true }
+    ] },
+  { id: "day4", n: 4, dow: "Sat", date: "28 Nov", iso: "2026-11-28",
+    theme: "Beitou hot spring and Tamsui",
+    route: "MRT Red Line, Xinbeitou branch, bus R26 or ferry",
+    check: "Pick a hot spring: Millennium is closed. Bring swimsuit and cap if needed.",
+    steps: [
+      { t: "08:15", title: "Breakfast, leave the hotel", where: "Ximending", dur: "30 min" },
+      { t: "08:45", title: "MRT to Xinbeitou", dur: "About 50 min (est)", lines: [["BL", "Blue Line"], ["R", "Red Line"]], note: "Change at Taipei Main, then at Beitou for the Xinbeitou branch (1 stop).", move: true },
+      { t: "09:40", e: "10:30", title: "Hot Spring Museum and Thermal Valley", where: "Beitou Park, optional", dur: "50 min", note: "Both free. Museum Tue to Sun 10:00 to 18:00, no bathing. Thermal Valley is viewed from the walkway." },
+      { t: "10:30", e: "12:30", title: "Hot spring soak", where: "Xinbeitou", dur: "2 h", note: "Spring City NT$800 (weekday rate), swimsuit and cap. Sweetme NT$900 weekends, nude, gender-separated. Longnaitang nude, gender-separated, ask the price at the counter.", flag: "Choose the venue" },
+      { t: "12:45", e: "13:45", title: "Lunch", where: "Xinbeitou", dur: "1 h" },
+      { t: "14:00", title: "Travel to Tamsui", dur: "About 35 min (est)", lines: [["R", "Red Line"]], note: "Branch line to Beitou first. Only every second Red Line train goes through to Tamsui.", move: true },
+      { t: "14:45", e: "16:00", title: "Tamsui Old Street and riverside promenade", where: "Tamsui", dur: "1 h 15 min", note: "Promenade is over 1 km. Busy on weekend afternoons." },
+      { t: "16:00", title: "To Fisherman's Wharf", dur: "About 20 min", lines: [["BUS", "Bus R26"], ["FERRY", "Ferry NT$60"]], note: "Bus about 16 min from Tamsui MRT. The ferry from Tamsui Wharf is the slow, scenic option.", move: true },
+      { t: "16:20", e: "17:45", title: "Fisherman's Wharf and Lover's Bridge sunset", where: "Tamsui", dur: "1 h 25 min", note: "Sunset about 17:03. Shalun Beach is about 10 min walk away." },
+      { t: "17:45", title: "Dinner in Tamsui", dur: "1 h 30 min", flag: "Venue to choose" },
+      { t: "19:30", title: "Bar", note: "Check last MRT times.", flag: "Venue to choose" },
+      { t: "22:00", title: "Back to the hotel", dur: "About 50 min (est)", lines: [["R", "Red Line"], ["BL", "Blue Line"]], move: true }
+    ] },
+  { id: "day5", n: 5, dow: "Sun", date: "29 Nov", iso: "2026-11-29",
+    theme: "Jing-Mei, Ximending, departure",
+    route: "MRT Green and Blue lines, Airport MRT Express",
+    check: "Airline check-in rules. Ask the hotel to hold luggage.",
+    steps: [
+      { t: "08:00", title: "Breakfast and pack", where: "Ximending", dur: "1 h" },
+      { t: "09:00", title: "Check out, bags at the front desk", dur: "15 min", note: "Check-out is before 11:00. Luggage storage is not stated in the listing.", flag: "Ask the hotel" },
+      { t: "09:15", title: "Travel to Jingmei, direct", dur: "About 20 min (est)", lines: [["G", "Green Line"]], note: "Check the best exit and walking route on the map.", move: true },
+      { t: "09:45", e: "11:30", title: "Jing-Mei White Terror Memorial Park", where: "131 Fuxing Rd., Xindian District", dur: "1 h 45 min", note: "National Human Rights Museum. Tue to Sun 09:00 to 17:00. Admission is not listed on the official page. An introductory lecture is offered." },
+      { t: "11:30", title: "Return to Ximen", dur: "About 20 min (est)", lines: [["G", "Green Line"]], move: true },
+      { t: "12:00", e: "13:15", title: "Ximending walk and lunch", where: "Ximending", dur: "1 h 15 min", note: "Red House Theater is near the hotel." },
+      { t: "13:30", title: "Collect luggage", dur: "15 min" },
+      { t: "13:45", title: "To Taipei Main, walk to Airport MRT (A1)", dur: "About 15 min (est)", lines: [["BL", "Blue Line"]], note: "Optional in-town check-in at Taipei Main if your airline takes part, at least 3 h before departure.", move: true },
+      { t: "14:10", title: "Airport MRT Express to TPE", dur: "35 to 39 min", lines: [["A", "Airport MRT Express"]], note: "NT$160. Trains about every 15 min.", move: true },
+      { t: "14:50", title: "Arrive at TPE, check in", note: "About 3 h 45 min before departure. Confirm the counter closing time." },
+      { t: "18:35", title: "Flight TPE to DMK", meta: "About 4 h", lines: [["FLY", "Flight"]], note: "Lands about 21:30 Bangkok time." }
+    ] }
+];
+
+var TODO = [
+  { id: "wx", when: "21 Nov", what: "Check the weather forecast", why: "Late Nov is often cool and wet. Pack a rain jacket and shoes with grip." },
+  { id: "twac", when: "22 to 25 Nov", what: "Submit the Taiwan Arrival Card", why: "twac.immigration.gov.tw. Earlier than 3 days before arrival is invalid. Save the QR code." },
+  { id: "spring", when: "By 26 Nov", what: "Choose the Day 4 hot spring", why: "Check weekend price and hours. Millennium is closed." },
+  { id: "air", when: "Before flying", what: "Confirm airline check-in rules", why: "Counter closing time and in-town check-in at Taipei Main." },
+  { id: "bags", when: "Before flying", what: "Ask the hotel to hold bags on Day 5", why: "Check-out is before 11:00, airport run starts 13:30." },
+  { id: "card", when: "On arrival", what: "Buy an EasyCard, carry some NT$ cash", why: "EasyCard covers MRT, buses and the Tamsui ferry. Night markets often prefer cash." }
+];
+
+var OPEN = [
+  ["Songshan stop, Day 1", "Ciyou Temple and Raohe Street assumed. Or Songshan Cultural and Creative Park?"],
+  ["Noodle dinner, Day 1", "Address or map link for Mian Xian Ting, or confirm Ay-Chung Mian Xian."],
+  ["Hot spring, Day 4", "Longnaitang, Spring City or Sweetme. Decides swimsuit or nude, price and booking."],
+  ["Bars, Days 3 and 4", "Pick areas or names, ideally near the hotel."],
+  ["Tamsui Wharf, Day 4", "Assumed Fisherman's Wharf with Lover's Bridge. Or the ferry pier?"],
+  ["Flights", "Airline and terminal from your booking."],
+  ["Passport", "Entry notes cover a Thai passport only."]
+];
+
+var SOURCES = [
+  ["Airport MRT, in-town check-in", "https://www.taipeitourism.org/taoyuan-airport-to-taipei/"],
+  ["Taiwan Arrival Card", "https://sg.trip.com/guide/info/taiwan-arrival-card.html"],
+  ["Thai visa-free extension", "https://www.khaosodenglish.com/tourism/2026/07/17/taiwan-extends-visa-free-entry-for-thai-travelers-through-july-2027/"],
+  ["Shifen Waterfall and Pingxi Line", "https://taiwanderers.com/shifen-waterfall-taiwan-guide/"],
+  ["Zhengbin Fishing Harbor", "https://taiwanderers.com/zhengbin-fishing-harbor-keelung-taiwan/"],
+  ["Beitou overview", "https://taiwanderers.com/beitou-taipei-guide/"],
+  ["Beitou hot springs and prices", "https://www.taipeitourism.org/beitou-hot-springs-guide/"],
+  ["Millennium Hot Spring closure", "https://beitouhotsprings.com/millennium-hot-spring/"],
+  ["Jing-Mei White Terror Memorial Park", "https://newtaipei.travel/en/attractions/detail/403773"],
+  ["Bopiliao Historic Block", "https://afuncouple.com/bopiliao-old-street-tapei/"],
+  ["Lung Shan Temple", "https://wefuntaiwan.com/8-things-you-should-know-about-longshan-temple/"],
+  ["Elephant Mountain", "https://huntingforbliss.com/?p=16790"],
+  ["Ningxia Night Market", "https://taiwanderers.com/ningxia-night-market-taipei/"],
+  ["Tamsui Old Street and Fisherman's Wharf", "https://www.taiwanobsessed.com/tamsui-old-street/"],
+  ["Songshan Cultural and Creative Park", "https://www.travelking.com.tw/eng/tourguide/scenery105015.html"],
+  ["Songshan Ciyou Temple and Raohe Street", "https://foreignersintaiwan.com/blog/songshan-ciyou-temple"],
+  ["Hotel listing", "https://www.kayak.com/Taipei-City-Hotels-Wonderwall-Ximending.1072059697.ksp"]
+];
+
+var ADDRESS = "9F-2, No.36, Xining S. Rd., Wanhua District, Taipei 108";
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function store(key, val) {
+  try {
+    if (val === undefined) return localStorage.getItem(key);
+    localStorage.setItem(key, val);
+  } catch (e) { return null; }
+}
+function ymd(tz) {
+  try { return new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()); }
+  catch (e) { return new Date().toISOString().slice(0, 10); }
+}
+function dayDiff(a, b) {
+  var pa = a.split("-").map(Number), pb = b.split("-").map(Number);
+  return Math.round((Date.UTC(pb[0], pb[1] - 1, pb[2]) - Date.UTC(pa[0], pa[1] - 1, pa[2])) / 86400000);
+}
+
+function stepHTML(s) {
+  var meta = [s.where, s.dur || s.meta].filter(Boolean).map(esc).join(" · ");
+  var chips = (s.lines || []).map(function (l) { return '<span class="chip ' + l[0] + '">' + esc(l[1]) + "</span>"; }).join("");
+  return '<li class="step' + (s.move ? " move" : "") + '">' +
+    '<div class="t">' + esc(s.t) + (s.e ? '<span class="end">' + esc(s.e) + "</span>" : "") + "</div>" +
+    '<div class="c"><h4>' + esc(s.title) + "</h4>" +
+    (meta ? '<p class="meta">' + meta + "</p>" : "") +
+    (chips ? '<div class="chips">' + chips + "</div>" : "") +
+    (s.note ? '<p class="note">' + esc(s.note) + "</p>" : "") +
+    (s.flag ? '<span class="flag">' + esc(s.flag) + "</span>" : "") +
+    "</div></li>";
+}
+
+function dayPanel(d) {
+  return '<section class="panel" id="p-' + d.id + '" role="tabpanel" aria-labelledby="t-' + d.id + '" hidden><div class="wrap">' +
+    '<div class="dayhead"><span class="when">Day ' + d.n + " · " + d.dow + " " + d.date + "</span>" +
+    "<h2>" + esc(d.theme) + "</h2>" +
+    '<p class="route">Getting around: ' + esc(d.route) + "</p></div>" +
+    '<div class="checkbox"><b>Check before you go</b><p>' + esc(d.check) + "</p></div>" +
+    '<ol class="tl">' + d.steps.map(stepHTML).join("") + "</ol>" +
+    "</div></section>";
+}
+
+function overviewPanel() {
+  var done = {};
+  try { done = JSON.parse(store("tw-todo") || "{}") || {}; } catch (e) { done = {}; }
+  return '<section class="panel" id="p-overview" role="tabpanel" aria-labelledby="t-overview" hidden><div class="wrap">' +
+    '<div class="sec"><h3>Five days</h3><ul class="glance">' +
+    DAYS.map(function (d) {
+      return '<li><button type="button" data-go="' + d.id + '"><span class="d">Day ' + d.n + "<span>" + d.dow + " " + d.date + '</span></span><span class="th">' + esc(d.theme) + '</span><span class="go" aria-hidden="true">&#8250;</span></button></li>';
+    }).join("") + "</ul></div>" +
+
+    '<div class="sec"><h3>Essentials</h3><div class="cards">' +
+    '<div class="card"><span class="lbl">Flight out</span><span class="big">Wed 07:45</span><p>DMK to TPE. Lands 12:30 Taiwan time.</p></div>' +
+    '<div class="card"><span class="lbl">Flight home</span><span class="big">Sun 18:35</span><p>TPE to DMK. Lands about 21:30 Bangkok time.</p></div>' +
+    '<div class="card wide"><span class="lbl">Hotel</span><span class="big">Wonderwall Ximending</span><p id="addr">' + esc(ADDRESS) + '</p><p>Check-in from 15:00, check-out before 11:00. Nearest MRT: Ximen (Blue and Green lines).</p><button type="button" class="copy" id="copy">Copy address</button></div>' +
+    '<div class="card wide"><span class="lbl">Airport MRT Express</span><span class="big">NT$160 · 35 to 39 min</span><p>TPE to Taipei Main (A1), about every 15 min. First train from the airport 06:12, last 22:42.</p></div>' +
+    "</div></div>" +
+
+    '<div class="sec"><h3>Before you go</h3><ul class="todo">' +
+    TODO.map(function (t) {
+      return '<li><label><input type="checkbox" id="todo-' + t.id + '" data-todo="' + t.id + '"' + (done[t.id] ? " checked" : "") + '><span><span class="when">' + esc(t.when) + '</span><span class="what">' + esc(t.what) + '</span><span class="why">' + esc(t.why) + "</span></span></label></li>";
+    }).join("") + "</ul></div>" +
+
+    '<div class="sec"><h3>Good to know</h3><dl class="facts">' +
+    "<div><dt>Time</dt><dd>Taiwan is UTC+8, 1 h ahead of Thailand. Flight times are local at each airport.</dd></div>" +
+    "<div><dt>Daylight</dt><dd>Sunrise about 06:17, sunset about 17:03. Keep outdoor sights before 17:00.</dd></div>" +
+    "<div><dt>Closures</dt><dd>All five days are Wed to Sun, so Monday closures do not affect any stop.</dd></div>" +
+    "<div><dt>Entry</dt><dd>Visa-free trial for Thai passports extended to 31 Jul 2027. Confirm on the Bureau of Consular Affairs site.</dd></div>" +
+    "</dl></div>" +
+
+    '<div class="sec"><h3>Still to decide</h3><ul class="open">' +
+    OPEN.map(function (o) { return "<li><b>" + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></li>"; }).join("") +
+    "</ul></div>" +
+
+    '<details><summary>Sources (read 24 Oct 2026)</summary><ul>' +
+    SOURCES.map(function (s) { return '<li><a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + "</a></li>"; }).join("") +
+    "</ul></details>" +
+    '<p class="foot">Fares and hours can change. Confirm before you travel.</p>' +
+    "</div></section>";
+}
+
+var TABS = [{ id: "overview", label: "Overview", small: "Trip" }].concat(DAYS.map(function (d) {
+  return { id: d.id, label: "Day " + d.n, small: d.dow + " " + d.date.split(" ")[0] };
+}));
+
+function select(id, focus) {
+  if (!document.getElementById("p-" + id)) id = "overview";
+  TABS.forEach(function (t) {
+    var on = t.id === id;
+    var b = document.getElementById("t-" + t.id);
+    b.setAttribute("aria-selected", on ? "true" : "false");
+    b.tabIndex = on ? 0 : -1;
+    document.getElementById("p-" + t.id).hidden = !on;
+    if (on) {
+      b.scrollIntoView({ block: "nearest", inline: "nearest" });
+      if (focus) b.focus();
+    }
+  });
+  store("tw-tab", id);
+}
+
+function start() {
+  var tabs = document.getElementById("tabs");
+  var today = ymd("Asia/Taipei");
+  var tripDay = null;
+  DAYS.forEach(function (d) { if (d.iso === today) tripDay = d; });
+
+  tabs.innerHTML = TABS.map(function (t) {
+    var small = tripDay && tripDay.id === t.id ? "Today" : t.small;
+    return '<button type="button" class="tab" role="tab" id="t-' + t.id + '" aria-controls="p-' + t.id + '" aria-selected="false">' + t.label + "<small>" + small + "</small></button>";
+  }).join("");
+  document.getElementById("panels").innerHTML = overviewPanel() + DAYS.map(dayPanel).join("");
+
+  var left = dayDiff(ymd("Asia/Bangkok"), "2026-11-25");
+  var count = document.getElementById("count");
+  if (tripDay) count.textContent = "Day " + tripDay.n + " of 5 · today";
+  else if (left > 1) count.textContent = left + " days to go";
+  else if (left === 1) count.textContent = "Fly tomorrow at 07:45";
+  else if (left === 0) count.textContent = "Flying today";
+  else count.textContent = "Trip complete";
+
+  tabs.addEventListener("click", function (e) {
+    var b = e.target.closest(".tab");
+    if (b) select(b.id.slice(2));
+  });
+  tabs.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var ids = TABS.map(function (t) { return t.id; });
+    var cur = ids.indexOf((store("tw-tab") || "overview"));
+    var next = ids[(cur + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length];
+    select(next, true);
+    e.preventDefault();
+  });
+  document.getElementById("panels").addEventListener("click", function (e) {
+    var go = e.target.closest("[data-go]");
+    if (go) { select(go.getAttribute("data-go")); window.scrollTo({ top: 0 }); }
+    if (e.target.id === "copy") {
+      var btn = e.target;
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy address"; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById("addr"));
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        btn.textContent = "Selected, copy it";
+      };
+      try { navigator.clipboard.writeText(ADDRESS).then(done, fallback); } catch (err) { fallback(); }
+    }
+  });
+  document.getElementById("panels").addEventListener("change", function (e) {
+    var id = e.target.getAttribute("data-todo");
+    if (!id) return;
+    var done = {};
+    try { done = JSON.parse(store("tw-todo") || "{}") || {}; } catch (err) { done = {}; }
+    done[id] = e.target.checked;
+    store("tw-todo", JSON.stringify(done));
+  });
+
+  var hash = (location.hash || "").slice(1);
+  var initial = document.getElementById("p-" + hash) ? hash : (tripDay ? tripDay.id : (store("tw-tab") || "overview"));
+  select(initial);
+}
+start();
+</script>
+
+</body></html>
